@@ -1,0 +1,33 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Order } from '../models/order';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class OrderService {
+  private baseUrl = 'http://localhost:8080/api/order';
+  
+  constructor(private http: HttpClient) { }
+
+  getOrderList(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.baseUrl}`);
+  }
+
+  getOrder(id: number): Observable<Order> {
+    return this.http.get<Order>(`${this.baseUrl}/${id}`);
+  }
+
+  createOrder(order: Order): Observable<Order> {
+    return this.http.post<Order>(`${this.baseUrl}`, order);
+  }
+
+  updateOrder(id: number, value: any): Observable<Order> {
+    return this.http.put<Order>(`${this.baseUrl}/${id}`, value);
+  }
+
+  deleteOrder(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  }
+}
