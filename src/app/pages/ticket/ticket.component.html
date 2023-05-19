@@ -1,76 +1,80 @@
 <div class="container">
     <h1>Tickets</h1>
-
+  
+    <!-- Create New Ticket Form -->
     <h2>Create New Ticket</h2>
     <form (ngSubmit)="createTicket()">
-        <div>
-            <label>Customer ID:</label>
-            <input [(ngModel)]="newTicket.customer.id" name="customerId">
-        </div>
-        <div>
-            <label>Event ID:</label>
-            <input [(ngModel)]="newTicket.event.id" name="eventId">
-        </div>
-        <button type="submit">Create Ticket</button>
+      <div class="form-group">
+        <label for="customerId">Customer ID:</label>
+        <input [(ngModel)]="newTicket.customer.id" name="customerId" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="eventId">Event ID:</label>
+        <input [(ngModel)]="newTicket.event.id" name="eventId" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Create Ticket</button>
     </form>
-
+  
+    <!-- Existing Tickets List -->
     <h2>Existing Tickets</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Customer ID</th>
-                <th>Event ID</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let ticket of tickets">
-                <td>{{ ticket.id }}</td>
-                <td>{{ ticket.customer.id }}</td>
-                <td>{{ ticket.event.id }}</td>
-                <td>
-                    <button (click)="selectTicketForUpdate(ticket)">Update</button>
-                </td>
-                <td>
-                    <button (click)="deleteTicket(ticket.id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Customer ID</th>
+          <th>Event ID</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets">
+          <td>{{ ticket.id }}</td>
+          <td>{{ ticket.customer.id }}</td>
+          <td>{{ ticket.event.id }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="selectTicketForUpdate(ticket)">Update</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteTicket(ticket.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
-
+  
+    <!-- Update Ticket Form -->
     <div *ngIf="selectedTicket">
-        <h2>Update Ticket</h2>
-        <form (ngSubmit)="updateTicket()">
-            <div>
-                <label>Customer ID:</label>
-                <input [(ngModel)]="selectedTicket.customer.id" name="customerId">
-            </div>
-            <div>
-                <label>Event ID:</label>
-                <input [(ngModel)]="selectedTicket.event.id" name="eventId">
-            </div>
-            <button type="submit">Update Ticket</button>
-        </form>
-
-        <h2>Ticket Details</h2>
-        <div>
-            <h3>Customer Details</h3>
-            <p><strong>ID:</strong> {{selectedTicket.customer.id}}</p>
-            <p><strong>First Name:</strong> {{selectedTicket.customer.firstName}}</p>
-            <p><strong>Last Name:</strong> {{selectedTicket.customer.lastName}}</p>
-            <p><strong>Email:</strong> {{selectedTicket.customer.email}}</p>
+      <h2>Update Ticket</h2>
+      <form (ngSubmit)="updateTicket()">
+        <div class="form-group">
+          <label for="customerId">Customer ID:</label>
+          <input [(ngModel)]="selectedTicket.customer.id" name="customerId" class="form-control">
         </div>
-        <div>
-            <h3>Event Details</h3>
-            <p><strong>ID:</strong> {{selectedTicket.event.id}}</p>
-            <p><strong>Name:</strong> {{selectedTicket.event.name}}</p>
-            <p><strong>Start Date:</strong> {{selectedTicket.event.startDate}}</p>
-            <p><strong>End Date:</strong> {{selectedTicket.event.endDate}}</p>
-            <p><strong>Image URL:</strong> {{selectedTicket.event.imageUrl}}</p>
-            <p><strong>Price:</strong> {{selectedTicket.event.price}}</p>
+        <div class="form-group">
+          <label for="eventId">Event ID:</label>
+          <input [(ngModel)]="selectedTicket.event.id" name="eventId" class="form-control">
         </div>
+        <button type="submit" class="btn btn-primary">Update Ticket</button>
+      </form>
+  
+      <!-- Ticket Details -->
+      <h2>Ticket Details</h2>
+      <div>
+        <h3>Customer Details</h3>
+        <p><strong>ID:</strong> {{selectedTicket.customer.id}}</p>
+        <p><strong>First Name:</strong> {{selectedTicket.customer.firstName}}</p>
+        <p><strong>Last Name:</strong> {{selectedTicket.customer.lastName}}</p>
+        <p><strong>Email:</strong> {{selectedTicket.customer.email}}</p>
+      </div>
+      <div>
+        <h3>Event Details</h3>
+        <p><strong>ID:</strong> {{selectedTicket.event.id}}</p>
+        <p><strong>Name:</strong> {{selectedTicket.event.name}}</p>
+        <p><strong>Start Date:</strong> {{selectedTicket.event.startDate}}</p>
+        <p><strong>End Date:</strong> {{selectedTicket.event.endDate}}</p>
+        <p><strong>Image URL:</strong> {{selectedTicket.event.imageUrl}}</p>
+        <p><strong>Price:</strong> {{selectedTicket.event.price}}</p>
+      </div>
     </div>
-
-</div>
+  </div>
+  

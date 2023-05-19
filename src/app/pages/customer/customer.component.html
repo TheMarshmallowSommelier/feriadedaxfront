@@ -5,16 +5,22 @@
   <h2>Create Customer</h2>
 
   <form (ngSubmit)="createCustomer()">
-    <label for="firstName">First Name:</label><br>
-    <input type="text" id="firstName" name="firstName" [(ngModel)]="newCustomer.firstName"><br>
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input class="form-control" type="text" id="firstName" name="firstName" [(ngModel)]="newCustomer.firstName">
+    </div>
 
-    <label for="lastName">Last Name:</label><br>
-    <input type="text" id="lastName" name="lastName" [(ngModel)]="newCustomer.lastName"><br>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input class="form-control" type="text" id="lastName" name="lastName" [(ngModel)]="newCustomer.lastName">
+    </div>
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" [(ngModel)]="newCustomer.email"><br>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input class="form-control" type="email" id="email" name="email" [(ngModel)]="newCustomer.email">
+    </div>
 
-    <input type="submit" value="Create">
+    <button class="btn btn-primary" type="submit">Create</button>
   </form>
 
   <!-- Customer List -->
@@ -50,16 +56,23 @@
     <h2>Update Customer</h2>
 
     <form (ngSubmit)="updateCustomer()">
-      <label for="firstName">First Name:</label><br>
-      <input type="text" id="firstName" name="firstName" [(ngModel)]="selectedCustomer.firstName"><br>
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input class="form-control" type="text" id="firstName" name="firstName"
+          [(ngModel)]="selectedCustomer.firstName">
+      </div>
 
-      <label for="lastName">Last Name:</label><br>
-      <input type="text" id="lastName" name="lastName" [(ngModel)]="selectedCustomer.lastName"><br>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input class="form-control" type="text" id="lastName" name="lastName" [(ngModel)]="selectedCustomer.lastName">
+      </div>
 
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" [(ngModel)]="selectedCustomer.email"><br>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input class="form-control" type="email" id="email" name="email" [(ngModel)]="selectedCustomer.email">
+      </div>
 
-      <input type="submit" value="Update">
+      <button class="btn btn-primary" type="submit">Update</button>
     </form>
   </div>
 
@@ -71,6 +84,6 @@
     <p><strong>Last Name:</strong> {{ selectedCustomer.lastName }}</p>
     <p><strong>Email:</strong> {{ selectedCustomer.email }}</p>
 
-    <button (click)="selectedCustomer = null">Close Details</button>
+    <button class="btn btn-secondary" (click)="selectedCustomer = null">Close Details</button>
   </div>
 </div>

@@ -1,73 +1,102 @@
 <div class="container">
     <h1>Events</h1>
-
+  
     <!-- Create Event Form -->
     <h2>Create Event</h2>
-
+  
     <form (ngSubmit)="createEvent()">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" [(ngModel)]="newEvent.name" required><br>
-        <label for="startDate">Start Date:</label><br>
-        <input type="datetime-local" id="startDate" name="startDate" [(ngModel)]="newEvent.startDate" required><br>
-        <label for="endDate">End Date:</label><br>
-        <input type="datetime-local" id="endDate" name="endDate" [(ngModel)]="newEvent.endDate" required><br>
-        <label for="imageUrl">Image URL:</label><br>
-        <input type="text" id="imageUrl" name="imageUrl" [(ngModel)]="newEvent.imageUrl" required><br>
-        <label for="price">Price:</label><br>
-        <input type="number" id="price" name="price" [(ngModel)]="newEvent.price" required><br>
-
-        <input type="submit" value="Create">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input class="form-control" type="text" id="name" name="name" [(ngModel)]="newEvent.name" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input class="form-control" type="datetime-local" id="startDate" name="startDate" [(ngModel)]="newEvent.startDate" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input class="form-control" type="datetime-local" id="endDate" name="endDate" [(ngModel)]="newEvent.endDate" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="imageUrl">Image URL:</label>
+        <input class="form-control" type="text" id="imageUrl" name="imageUrl" [(ngModel)]="newEvent.imageUrl" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input class="form-control" type="number" id="price" name="price" [(ngModel)]="newEvent.price" required>
+      </div>
+  
+      <button class="btn btn-primary" type="submit">Create</button>
     </form>
-
+  
     <!-- Event List -->
     <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Image URL</th>
-                <th>Price</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let event of events">
-                <td>{{ event.id }}</td>
-                <td>{{ event.name }}</td>
-                <td>{{ event.startDate | date:'short' }}</td>
-                <td>{{ event.endDate | date:'short' }}</td>
-                <td>{{ event.imageUrl }}</td>
-                <td>{{ event.price }}</td>
-                <td>
-                    <button class="btn btn-primary" (click)="selectEventForUpdate(event)">Update</button>
-                </td>
-                <td>
-                    <button class="btn btn-danger" (click)="deleteEvent(event.id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Image URL</th>
+          <th>Price</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events">
+          <td>{{ event.id }}</td>
+          <td>{{ event.name }}</td>
+          <td>{{ event.startDate | date:'short' }}</td>
+          <td>{{ event.endDate | date:'short' }}</td>
+          <td>{{ event.imageUrl }}</td>
+          <td>{{ event.price }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="selectEventForUpdate(event)">Update</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteEvent(event.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
-
+  
     <!-- Update Event Form -->
-    <h2 *ngIf="selectedEvent">Update Event</h2>
-
-    <form *ngIf="selectedEvent" (ngSubmit)="updateEvent()">
-        <label for="updateName">Name:</label><br>
-        <input type="text" id="updateName" name="updateName" [(ngModel)]="selectedEvent.name" required><br>
-        <label for="updateStartDate">Start Date:</label><br>
-        <input type="datetime-local" id="updateStartDate" name="updateStartDate" [(ngModel)]="selectedEvent.startDate"
-            required><br>
-        <label for="updateEndDate">End Date:</label><br>
-        <input type="datetime-local" id="updateEndDate" name="updateEndDate" [(ngModel)]="selectedEvent.endDate"
-            required><br>
-        <label for="updateImageUrl">Image URL:</label><br>
-        <input type="text" id="updateImageUrl" name="updateImageUrl" [(ngModel)]="selectedEvent.imageUrl" required><br>
-        <label for="updatePrice">Price:</label><br>
-        <input type="number" id="updatePrice" name="updatePrice" [(ngModel)]="selectedEvent.price" required><br>
-
-        <input type="submit" value="Update">
-    </form>
-</div>
+    <div *ngIf="selectedEvent">
+      <h2>Update Event</h2>
+  
+      <form (ngSubmit)="updateEvent()">
+        <div class="form-group">
+          <label for="updateName">Name:</label>
+          <input class="form-control" type="text" id="updateName" name="updateName" [(ngModel)]="selectedEvent.name" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="updateStartDate">Start Date:</label>
+          <input class="form-control" type="datetime-local" id="updateStartDate" name="updateStartDate" [(ngModel)]="selectedEvent.startDate" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="updateEndDate">End Date:</label>
+          <input class="form-control" type="datetime-local" id="updateEndDate" name="updateEndDate" [(ngModel)]="selectedEvent.endDate" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="updateImageUrl">Image URL:</label>
+          <input class="form-control" type="text" id="updateImageUrl" name="updateImageUrl" [(ngModel)]="selectedEvent.imageUrl" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="updatePrice">Price:</label>
+          <input class="form-control" type="number" id="updatePrice" name="updatePrice" [(ngModel)]="selectedEvent.price" required>
+        </div>
+  
+        <button class="btn btn-primary" type="submit">Update</button>
+      </form>
+    </div>
+  </div>
+  

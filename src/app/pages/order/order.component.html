@@ -1,115 +1,115 @@
 <div class="container">
     <h1>Orders</h1>
-
+  
     <h2>Create New Order</h2>
     <form (ngSubmit)="createOrder()">
-        <div>
-            <label>Order Date:</label>
-            <input [(ngModel)]="newOrder.orderDate" type="text" name="orderDate" required>
-        </div>
-        <div>
-            <label>Total Price:</label>
-            <input [(ngModel)]="newOrder.totalPrice" type="number" name="totalPrice" required>
-        </div>
-        <div>
-            <label>Customer ID:</label>
-            <input [(ngModel)]="newOrder.customer.id" type="number" name="customerId" required>
-        </div>
-        <button type="submit">Create Order</button>
+      <div class="form-group">
+        <label for="orderDate">Order Date:</label>
+        <input class="form-control" [(ngModel)]="newOrder.orderDate" type="text" name="orderDate" required>
+      </div>
+      <div class="form-group">
+        <label for="totalPrice">Total Price:</label>
+        <input class="form-control" [(ngModel)]="newOrder.totalPrice" type="number" name="totalPrice" required>
+      </div>
+      <div class="form-group">
+        <label for="customerId">Customer ID:</label>
+        <input class="form-control" [(ngModel)]="newOrder.customer.id" type="number" name="customerId" required>
+      </div>
+      <button class="btn btn-primary" type="submit">Create Order</button>
     </form>
-
+  
     <h2>Existing Orders</h2>
-    <table>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Order Date</th>
+          <th>Total Price</th>
+          <th>Customer ID</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.orderDate }}</td>
+          <td>{{ order.totalPrice }}</td>
+          <td>{{ order.customer.id }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="selectOrder(order)">Update</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteOrder(order.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="selectedOrder">
+      <h2>Update Order</h2>
+      <form (ngSubmit)="updateOrder()">
+        <div class="form-group">
+          <label for="updateOrderDate">Order Date:</label>
+          <input class="form-control" [(ngModel)]="selectedOrder.orderDate" type="text" name="updateOrderDate" required>
+        </div>
+        <div class="form-group">
+          <label for="updateTotalPrice">Total Price:</label>
+          <input class="form-control" [(ngModel)]="selectedOrder.totalPrice" type="number" name="updateTotalPrice" required>
+        </div>
+        <div class="form-group">
+          <label for="updateCustomerId">Customer ID:</label>
+          <input class="form-control" [(ngModel)]="selectedOrder.customer.id" type="number" name="updateCustomerId" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Update Order</button>
+      </form>
+    </div>
+  
+    <div *ngIf="selectedOrder">
+      <h2>Order Details</h2>
+      <div class="form-group">
+        <label for="orderId">Order ID:</label>
+        <span>{{ selectedOrder.id }}</span>
+      </div>
+      <div class="form-group">
+        <label for="orderDate">Order Date:</label>
+        <span>{{ selectedOrder.orderDate }}</span>
+      </div>
+      <div class="form-group">
+        <label for="totalPrice">Total Price:</label>
+        <span>{{ selectedOrder.totalPrice }}</span>
+      </div>
+      <div class="form-group">
+        <label for="customerId">Customer ID:</label>
+        <span>{{ selectedOrder.customer.id }}</span>
+      </div>
+      <div class="form-group">
+        <label for="customerFirstName">Customer First Name:</label>
+        <span>{{ selectedOrder.customer.firstName }}</span>
+      </div>
+      <div class="form-group">
+        <label for="customerLastName">Customer Last Name:</label>
+        <span>{{ selectedOrder.customer.lastName }}</span>
+      </div>
+      <div class="form-group">
+        <label for="customerEmail">Customer Email:</label>
+        <span>{{ selectedOrder.customer.email }}</span>
+      </div>
+      <h3>Order Items</h3>
+      <table class="table table-bordered table-striped">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Order Date</th>
-                <th>Total Price</th>
-                <th>Customer ID</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
+          <tr>
+            <th>Product ID</th>
+            <th>Quantity</th>
+          </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let order of orders">
-                <td>{{ order.id }}</td>
-                <td>{{ order.orderDate }}</td>
-                <td>{{ order.totalPrice }}</td>
-                <td>{{ order.customer.id }}</td>
-                <td>
-                    <button (click)="selectOrder(order)">Update</button>
-                </td>
-                <td>
-                    <button (click)="deleteOrder(order.id)">Delete</button>
-                </td>
-            </tr>
+          <tr *ngFor="let orderItem of selectedOrder.orderItems">
+            <td>{{ orderItem.product.id }}</td>
+            <td>{{ orderItem.quantity }}</td>
+          </tr>
         </tbody>
-    </table>
-
-    <div *ngIf="selectedOrder">
-        <h2>Update Order</h2>
-        <form (ngSubmit)="updateOrder()">
-            <div>
-                <label>Order Date:</label>
-                <input [(ngModel)]="selectedOrder.orderDate" type="text" name="orderDate" required>
-            </div>
-            <div>
-                <label>Total Price:</label>
-                <input [(ngModel)]="selectedOrder.totalPrice" type="number" name="totalPrice" required>
-            </div>
-            <div>
-                <label>Customer ID:</label>
-                <input [(ngModel)]="selectedOrder.customer.id" type="number" name="customerId" required>
-            </div>
-            <button type="submit">Update Order</button>
-        </form>
+      </table>
     </div>
-
-    <div *ngIf="selectedOrder">
-        <h2>Order Details</h2>
-        <div>
-            <label>Order ID:</label>
-            <span>{{ selectedOrder.id }}</span>
-        </div>
-        <div>
-            <label>Order Date:</label>
-            <span>{{ selectedOrder.orderDate }}</span>
-        </div>
-        <div>
-            <label>Total Price:</label>
-            <span>{{ selectedOrder.totalPrice }}</span>
-        </div>
-        <div>
-            <label>Customer ID:</label>
-            <span>{{ selectedOrder.customer.id }}</span>
-        </div>
-        <div>
-            <label>Customer First Name:</label>
-            <span>{{ selectedOrder.customer.firstName }}</span>
-        </div>
-        <div>
-            <label>Customer Last Name:</label>
-            <span>{{ selectedOrder.customer.lastName }}</span>
-        </div>
-        <div>
-            <label>Customer Email:</label>
-            <span>{{ selectedOrder.customer.email }}</span>
-        </div>
-        <h3>Order Items</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product ID</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let orderItem of selectedOrder.orderItems">
-                    <td>{{ orderItem.product.id }}</td>
-                    <td>{{ orderItem.quantity }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-</div>
+  </div>
+  

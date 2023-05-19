@@ -1,80 +1,81 @@
 <div class="container">
-    <h1>Products</h1>
-  
-    <h2>Create New Product</h2>
-    <form (ngSubmit)="createProduct()">
-      <div class="form-group">
-        <label for="newName">Name</label>
-        <input type="text" id="newName" [(ngModel)]="newProduct.name" name="newName" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="newDescription">Description</label>
-        <input type="text" id="newDescription" [(ngModel)]="newProduct.description" name="newDescription" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="newImageUrl">Image URL</label>
-        <input type="text" id="newImageUrl" [(ngModel)]="newProduct.imageUrl" name="newImageUrl" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="newPrice">Price</label>
-        <input type="number" id="newPrice" [(ngModel)]="newProduct.price" name="newPrice" class="form-control">
-      </div>
-      <button type="submit" class="btn btn-primary">Create</button>
-    </form>
-  
-    <h2>All Products</h2>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Image URL</th>
-          <th>Price</th>
-          <th>Update</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of products">
-          <td>{{ product.id }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.description }}</td>
-          <td>{{ product.imageUrl }}</td>
-          <td>{{ product.price }}</td>
-          <td>
-            <button class="btn btn-warning" (click)="selectProductForUpdate(product)">Update</button>
-          </td>
-          <td>
-            <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h1>Products</h1>
 
-    <div *ngIf="selectedProduct">
-        <h2>Update Product</h2>
-        <form (ngSubmit)="updateProduct()">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" [(ngModel)]="selectedProduct.name" name="name" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" id="description" [(ngModel)]="selectedProduct.description" name="description" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="imageUrl">Image URL</label>
-            <input type="text" id="imageUrl" [(ngModel)]="selectedProduct.imageUrl" name="imageUrl" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" id="price" [(ngModel)]="selectedProduct.price" name="price" class="form-control">
-          </div>
-          <button type="submit" class="btn btn-success">Update</button>
-          <button type="button" class="btn btn-warning" (click)="selectedProduct = null">Cancel</button>
-        </form>
+  <!-- Create New Product Form -->
+  <h2>Create New Product</h2>
+  <form (ngSubmit)="createProduct()">
+    <div class="form-group">
+      <label for="newName">Name</label>
+      <input type="text" id="newName" [(ngModel)]="newProduct.name" name="newName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="newDescription">Description</label>
+      <input type="text" id="newDescription" [(ngModel)]="newProduct.description" name="newDescription" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="newImageUrl">Image URL</label>
+      <input type="text" id="newImageUrl" [(ngModel)]="newProduct.imageUrl" name="newImageUrl" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="newPrice">Price</label>
+      <input type="number" id="newPrice" [(ngModel)]="newProduct.price" name="newPrice" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+
+  <!-- Product List -->
+  <h2>All Products</h2>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image URL</th>
+        <th>Price</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.imageUrl }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="selectProductForUpdate(product)">Update</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Update Product Form -->
+  <div *ngIf="selectedProduct">
+    <h2>Update Product</h2>
+    <form (ngSubmit)="updateProduct()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" [(ngModel)]="selectedProduct.name" name="name" class="form-control">
       </div>
-    
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" [(ngModel)]="selectedProduct.description" name="description" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input type="text" id="imageUrl" [(ngModel)]="selectedProduct.imageUrl" name="imageUrl" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" id="price" [(ngModel)]="selectedProduct.price" name="price" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="button" class="btn btn-secondary" (click)="selectedProduct = null">Cancel</button>
+    </form>
   </div>
-  
+</div>
