@@ -1,5 +1,22 @@
 <h1>Customers</h1>
 
+<!-- Create Customer Form -->
+<h2>Create Customer</h2>
+
+<form (ngSubmit)="createCustomer()">
+  <label for="firstName">First Name:</label><br>
+  <input type="text" id="firstName" name="firstName" [(ngModel)]="newCustomer.firstName"><br>
+  
+  <label for="lastName">Last Name:</label><br>
+  <input type="text" id="lastName" name="lastName" [(ngModel)]="newCustomer.lastName"><br>
+  
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" [(ngModel)]="newCustomer.email"><br>
+  
+  <input type="submit" value="Create">
+</form>
+
+<!-- Customer List -->
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -7,6 +24,7 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
+      <th>Update</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -17,8 +35,40 @@
       <td>{{ customer.lastName }}</td>
       <td>{{ customer.email }}</td>
       <td>
+        <button class="btn btn-primary" (click)="selectCustomerForUpdate(customer)">Update</button>
+      </td>
+      <td>
         <button class="btn btn-danger" (click)="deleteCustomer(customer.id)">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
+
+<!-- Update Customer Form -->
+<div *ngIf="selectedCustomer">
+  <h2>Update Customer</h2>
+
+  <form (ngSubmit)="updateCustomer()">
+    <label for="firstName">First Name:</label><br>
+    <input type="text" id="firstName" name="firstName" [(ngModel)]="selectedCustomer.firstName"><br>
+    
+    <label for="lastName">Last Name:</label><br>
+    <input type="text" id="lastName" name="lastName" [(ngModel)]="selectedCustomer.lastName"><br>
+    
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" [(ngModel)]="selectedCustomer.email"><br>
+    
+    <input type="submit" value="Update">
+  </form>
+</div>
+
+<!-- Customer Details -->
+<div *ngIf="selectedCustomer">
+  <h2>Customer Details</h2>
+
+  <p><strong>First Name:</strong> {{ selectedCustomer.firstName }}</p>
+  <p><strong>Last Name:</strong> {{ selectedCustomer.lastName }}</p>
+  <p><strong>Email:</strong> {{ selectedCustomer.email }}</p>
+
+  <button (click)="selectedCustomer = null">Close Details</button>
+</div>
