@@ -7,12 +7,14 @@ import { CustomerComponent } from './pages/customer/customer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EventComponent } from './pages/event/event.component';
+import { ProductComponent } from './pages/product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
-    EventComponent
+    EventComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
