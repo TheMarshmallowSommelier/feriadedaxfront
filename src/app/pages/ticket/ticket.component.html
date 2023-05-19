@@ -1,0 +1,76 @@
+<div class="container">
+    <h1>Tickets</h1>
+
+    <h2>Create New Ticket</h2>
+    <form (ngSubmit)="createTicket()">
+        <div>
+            <label>Customer ID:</label>
+            <input [(ngModel)]="newTicket.customer.id" name="customerId">
+        </div>
+        <div>
+            <label>Event ID:</label>
+            <input [(ngModel)]="newTicket.event.id" name="eventId">
+        </div>
+        <button type="submit">Create Ticket</button>
+    </form>
+
+    <h2>Existing Tickets</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer ID</th>
+                <th>Event ID</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ticket of tickets">
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.customer.id }}</td>
+                <td>{{ ticket.event.id }}</td>
+                <td>
+                    <button (click)="selectTicketForUpdate(ticket)">Update</button>
+                </td>
+                <td>
+                    <button (click)="deleteTicket(ticket.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="selectedTicket">
+        <h2>Update Ticket</h2>
+        <form (ngSubmit)="updateTicket()">
+            <div>
+                <label>Customer ID:</label>
+                <input [(ngModel)]="selectedTicket.customer.id" name="customerId">
+            </div>
+            <div>
+                <label>Event ID:</label>
+                <input [(ngModel)]="selectedTicket.event.id" name="eventId">
+            </div>
+            <button type="submit">Update Ticket</button>
+        </form>
+
+        <h2>Ticket Details</h2>
+        <div>
+            <h3>Customer Details</h3>
+            <p><strong>ID:</strong> {{selectedTicket.customer.id}}</p>
+            <p><strong>First Name:</strong> {{selectedTicket.customer.firstName}}</p>
+            <p><strong>Last Name:</strong> {{selectedTicket.customer.lastName}}</p>
+            <p><strong>Email:</strong> {{selectedTicket.customer.email}}</p>
+        </div>
+        <div>
+            <h3>Event Details</h3>
+            <p><strong>ID:</strong> {{selectedTicket.event.id}}</p>
+            <p><strong>Name:</strong> {{selectedTicket.event.name}}</p>
+            <p><strong>Start Date:</strong> {{selectedTicket.event.startDate}}</p>
+            <p><strong>End Date:</strong> {{selectedTicket.event.endDate}}</p>
+            <p><strong>Image URL:</strong> {{selectedTicket.event.imageUrl}}</p>
+            <p><strong>Price:</strong> {{selectedTicket.event.price}}</p>
+        </div>
+    </div>
+
+</div>

@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EventComponent } from './pages/event/event.component';
 import { ProductComponent } from './pages/product/product.component';
+import { TicketComponent } from './pages/ticket/ticket.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
     EventComponent,
-    ProductComponent
+    ProductComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,
