@@ -1,10 +1,18 @@
-import { Customer } from "./customer";
-import { OrderItem } from "./orderItem";
+import { Customer } from './customer';
 
 export interface Order {
-    id: number;
-    customer: Customer;
-    orderDate: Date;
-    totalPrice: number;
-    orderItems: OrderItem[];
-  }
+  id: number;
+  orderDate: string;
+  totalPrice: number;
+  customer: Customer;
+  orderItems: OrderItem[];
+}
+
+export interface OrderItem {
+  product: Product;
+  quantity: number;
+}
+
+export interface Product {
+  id: number;
+}
